@@ -1,6 +1,7 @@
 
 import './App.css';
 import Quiz from './Componentes/Quiz';
+import Inicializacao from './Componentes/Inicializacao';
 
 function App() {
   return (
@@ -9,7 +10,9 @@ function App() {
        
       </header>
 
-      <Quiz/>
+      {/**<Quiz/>**/}
+
+      <Inicializacao/>
     </div>
   );
 }

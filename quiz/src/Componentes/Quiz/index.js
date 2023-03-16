@@ -1,46 +1,17 @@
 import './Quiz.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import Pergunta from '../Pergunta';
 
 
-function Quiz() {
+function Quiz({ nperguntas, categoria, nivel }) {
 
     const [perguntas, setPerguntas] = useState([]);
-    const [respostaCerta, setRespostaCerta] = useState("");
     const [pontuacao, setPontuacao] = useState(0);
-    const [perguntasRespondidas, setPerguntasRespondidas] = useState(0);
-    const [todasRespostas, setTodasRespostas] = useState([]);
     const [carregando, setCarregando] = useState(false);
-
-
-    function combinaRespostas(respostasIncorretas, respostasCorretas) {
-        let todasRespostasItem = [];
-        let todasRespostasTotais = [];
-
-        todasRespostasTotais.push = todasRespostas;
-
-        /**console.log("respostas_errad" ,respostasIncorretas);**/
-
-        /**console.log("todasRespostasTotais",todasRespostasTotais);**/
-        respostasIncorretas.map((item) => {/**console.log("item" ,item);**/
-            todasRespostasItem.push(item);
-        }
-        );
-
-        todasRespostasItem.push(respostasCorretas);
-
-        //Randomize order of answers in array
-
-
-        todasRespostasItem.sort(() => Math.random() - 0.5);
-
-
-
-        /**console.log(" todasRespostasItem", todasRespostasItem);
-        
-        setTodasRespostas(() => todasRespostasItem);**/
-
-    }
+    const [numeroDePerguntas, setNumeroDePerguntas] = useState(5);
+    
+    
 
 
     /** 
@@ -68,16 +39,18 @@ function Quiz() {
         )
 
         
-
+         https://opentdb.com/api.php?amount=${numeroDePerguntas}
+         https://opentdb.com/api.php?amount=${nperguntas}&category=${categoria}&difficulty=${nivel}
         setCarregando(false);
       }
 
       **/
 
-
+      
     async function getPerguntas() {
+        setCarregando(true);
         setPontuacao(0);
-        fetch("https://opentdb.com/api.php?amount=5")
+        fetch(`https://opentdb.com/api.php?amount=${nperguntas}&category=${categoria}&difficulty=${nivel}`)
             .then(res => res.json())
             .then(data => setPerguntas(data.results.map(function (question) {
                 return ({
@@ -87,7 +60,7 @@ function Quiz() {
                     correct_answer: question.correct_answer
                 })
             })))
-
+            setCarregando(false);
     }
 
 
@@ -98,35 +71,13 @@ function Quiz() {
 
 
 
-
-
-
-
-    function verificaResposta(respostaEscolhida, respostaCorreta, index) {
-        //If the selected answer equals the correct answer, then we get the next trivia quesiton and increase the current points by 1
-        { console.log("Resposta escolhida ", respostaEscolhida) }
-        { console.log("Resposta certa ", respostaCorreta) }
-        setPerguntasRespondidas(perguntasRespondidas + 1);
-        {document.getElementById(index).style.display="none"}
-        if (respostaEscolhida === respostaCorreta) {
-
-            setPontuacao(pontuacao + 1);
-        } 
-
-        if (perguntasRespondidas == 5) {
-            <h2>Você acertou {(pontuacao / perguntasRespondidas) * 100}%</h2>
-        }
-
-    }
-
-
-    function corrige(pergunta) {
-        return pergunta.replace(/(&quot\;)/g, "\"").replace(/(&rsquo\;)/g, "\"").replace(/(&#039\;)/g, "\'").replace(/(&amp\;)/g, "\"");
+    function handlePontuacao() {
+        setPontuacao(pontuacao+1);
     }
 
 
     function reset(){
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < nperguntas; i++) {
             document.getElementById(i).style.display="inline-block"
         }
         getPerguntas();       
@@ -134,45 +85,21 @@ function Quiz() {
 
     return (
         <div className="App">
-
-            {carregando ? "Trivia Question Loading..." : <div>
+           
+            {carregando ? "Carregando..." : <div>
                 <div className="pontuacao">
-                    <h2>Pontuação: {pontuacao!=0?((pontuacao / 5) * 100):0}%</h2>
+                    <h2>Pontuação: {pontuacao!==0?((pontuacao / nperguntas) * 100):0}%</h2>
                 </div>
                 <br />
                 {console.log("perguntas ", perguntas)}
                 {perguntas.map((pergunta, index) =>
 
-                    <div id={index} className="perguntaCard" key={index}>
-                        
-                        <div>
-                            <h3>Pergunta {index + 1}</h3>
+                    
+                      <Pergunta pergunta={pergunta} index={index} change = {handlePontuacao}/>
+                      
 
-                            <div className="pergunta">{corrige(pergunta.question)}</div>
-
-
-                            <div className="resposta">
-
-                                {
-                                    pergunta.options.map((resposta, index2) =>
-                                        <div className="opcao" key={index2}>
-                                            <button onClick={() => verificaResposta(resposta, pergunta.correct_answer,index)} >
-                                                {corrige(resposta)}
-                                            </button>
-                                        </div>
-                                    )
-                                }
-                            </div>
-
-                        </div>
-
-                    </div>
                 )}
-                <div className="reset">
-                    <button onClick={() => reset()} >
-                        Reset
-                    </button>
-                </div>
+               
 
             </div>
 
