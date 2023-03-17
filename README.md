@@ -81,6 +81,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### [🌐 Demo][(https://quiz-edpadua.vercel.app)]
 
+![image](https://user-images.githubusercontent.com/4975360/225902877-dab10e7b-22dc-4f46-a692-9696a71e0ab3.png)
+
+
 ### API Open Trivia Database
 
 [🚀 Open Trivia Database API](https://opentdb.com/)
