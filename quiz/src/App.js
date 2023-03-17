@@ -9,9 +9,9 @@ function App() {
       <header className="App-header">
        
       </header>
-
-      {/**<Quiz/>**/}
-
+      <div className="titulo">
+         <h1>Quiz</h1>
+      </div>
       <Inicializacao/>
     </div>
   );

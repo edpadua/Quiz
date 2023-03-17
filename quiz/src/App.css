@@ -10,6 +10,17 @@
   pointer-events: none;
 }
 
+h1{
+  font-size:40px;
+  font-weight:700;
+}
+
+.titulo{
+  color:#ffffff;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
