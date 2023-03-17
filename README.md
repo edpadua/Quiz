@@ -79,13 +79,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 
-### [🌐 Demo][(https://quiz-edpadua.vercel.app)]
+### [🌐 Demo](https://quiz-edpadua.vercel.app)
 
 ![image](https://user-images.githubusercontent.com/4975360/225902877-dab10e7b-22dc-4f46-a692-9696a71e0ab3.png)
 ![image](https://user-images.githubusercontent.com/4975360/225903334-2f1052ad-17be-44a5-86f3-dc9d2162de8c.png)
 
 
 
-### API Open Trivia Database
-
-[🚀 Open Trivia Database API](https://opentdb.com/)
+### [🚀 Open Trivia Database API](https://opentdb.com/)
