@@ -1,4 +1,10 @@
 # Quiz
+
+# About 
+
+This is a Quiz game developed in React based on the list of questions from the Open Trivia Database API. 
+
+The purpose of this project is to put into practice concepts from the React library, in this case, hooks, componentization, passing parameters between different components, REST API consumption, component display control, among others.
  
 # Getting Started with Create React App
 
