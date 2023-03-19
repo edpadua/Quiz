@@ -8,8 +8,7 @@ function Pergunta({ pergunta, index, change }) {
 
     function verificaResposta(respostaEscolhida, respostaCorreta, index) {
         
-        console.log("Resposta escolhida ", respostaEscolhida); 
-        console.log("Resposta certa ", respostaCorreta); 
+       
         
         document.getElementById(index).style.display="none";
         if (respostaEscolhida === respostaCorreta) {
